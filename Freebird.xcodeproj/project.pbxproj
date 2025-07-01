@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		65CD85022E146C930095C7F3 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 65CD85012E146C8D0095C7F3 /* .gitignore */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		65FAB45F2E1468F1004AFBE8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -24,6 +28,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		65CD85012E146C8D0095C7F3 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		65FAB4502E1468F0004AFBE8 /* Freebird.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Freebird.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		65FAB45E2E1468F1004AFBE8 /* FreebirdTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FreebirdTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		65FAB4682E1468F1004AFBE8 /* FreebirdUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FreebirdUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -79,6 +84,7 @@
 				65FAB4612E1468F1004AFBE8 /* FreebirdTests */,
 				65FAB46B2E1468F1004AFBE8 /* FreebirdUITests */,
 				65FAB4512E1468F0004AFBE8 /* Products */,
+				65CD85012E146C8D0095C7F3 /* .gitignore */,
 			);
 			sourceTree = "<group>";
 		};
@@ -212,6 +218,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65CD85022E146C930095C7F3 /* .gitignore in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
