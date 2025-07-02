@@ -5,11 +5,11 @@ struct AppConfig : Decodable{
         let height: String
 
         var widthInt: Int {
-            return width.toInt("Map Width")
+            return Int(width) ?? 0
         }
 
         var heightInt: Int {
-            return height.toInt("Map Height")
+            return Int(height) ?? 0
         }
     }
 

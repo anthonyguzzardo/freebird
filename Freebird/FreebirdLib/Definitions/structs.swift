@@ -1,4 +1,5 @@
 import CoreFoundation
+import CoreLocation
 
 public struct Dimensions {
     let width  : CGFloat // CGFloat
@@ -7,13 +8,18 @@ public struct Dimensions {
 }
 
 public struct Coordinates {
-    let longitude : CGFloat // CGFloat
-    let latitude  : CGFloat
+    let longitude : CLLocationDegrees // CGFloat
+    let latitude  : CLLocationDegrees
 }
 
-public struct MapPin{
-    let location : Coordinates // (41.9141994, –87.6244975 )
-    let title    : String   // North Ave Beach 
+func toCLCoord(_ coords: Coordinates) -> CLLocationCoordinate2D {
+    CLLocationCoordinate2D(latitude: coords.latitude, longitude: coords.longitude)
+}
+
+struct MapPin: Identifiable {
+    let id = UUID()
+    let title: String
+    let coordinate: CLLocationCoordinate2D
 }
 
 //struct MapDimensions{
