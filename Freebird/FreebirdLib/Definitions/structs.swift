@@ -1,12 +1,12 @@
 import CoreFoundation
 
-struct Dimensions {
+public struct Dimensions {
     let width  : CGFloat // CGFloat
     let height : CGFloat // CGFloat
     let depth  : CGFloat // CGFloat
 }
 
-struct Coordinates {
+public struct Coordinates {
     let longitude : CGFloat // CGFloat
     let latitude  : CGFloat
 }
