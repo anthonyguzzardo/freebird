@@ -1,24 +1,25 @@
-import Definitions
+public class Event: Widget {
 
-public class Event: BaseWidget {
-
-    // MARK : - Public Members
-
-    private public(set) var mapPin  :  MapPin
-    private public(set) var name    :  KnownEvent
+    // MARK: - Public Members
+    public var mapPin: MapPin               // Struct contains location and coordinates(longitude,latitude)
+    public var eventCategory: EventCategory // ENUM
 
     // MARK: - Constructors
-    public convenience init(name: String, pin: MapPin) throws {
-        try self.init(validatedName: name, mapPin: pin)
+    public convenience init(_ mapPin: MapPin, _ eventCategory: EventCategory) {
+        self.init(rawMapPin: mapPin, rawEventCategory: eventCategory)
     }
 
-    private init(validatedName name: String, mapPin: MapPin) throws {
-        guard let parsed = name.ToEventType() else {
-            throw SimpleError(message: "\(name) is not an accepted Event.")
-        }
-        self.name = parsed
-        self.mapPin = mapPin
-        super.init(title: name) // assuming you want to set this as the widget title
+    public init(rawMapPin: MapPin, rawEventCategory: EventCategory) {
+        self.mapPin = rawMapPin
+        self.eventCategory = rawEventCategory
     }
-
+    
+    
+    // MARK: Utilities
+    public func render() -> Void {
+        print("banana")
+    }
+    public func debugDescription() -> String {
+        return "banana"
+    }
 }

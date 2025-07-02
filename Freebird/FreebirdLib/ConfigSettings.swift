@@ -1,5 +1,3 @@
-import Definitions
-
 public class ConfigSettings {
 
     private var isLoaded: Bool = false

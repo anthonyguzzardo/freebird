@@ -1,5 +1,5 @@
 // MAP ONLY GETS CREATED ONCE
-public static class Map {
+public class Map {
 
     // MARK: - Private Members
     private var dimensions: Dimensions
