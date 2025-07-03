@@ -1,32 +1,25 @@
 import CoreFoundation
 import CoreLocation
+import MapKit
 
-public struct Dimensions {
-    let width  : CGFloat // CGFloat
-    let height : CGFloat // CGFloat
-    let depth  : CGFloat // CGFloat
+/*
+ 
+ Need 1 Map
+ Need 2 Coordinate
+ Need 1 Marker
+ 
+ */
+
+/// Semantic type, wrapping CLLocationCoordinate2D in own Coordinates
+/// Params are latitude, longitude
+public struct Coordinate { // Strongly Typed easier to
+    private let _coordinate: CLLocationCoordinate2D
+
+    public init(_ latitude: CLLocationDegrees, _ longitude: CLLocationDegrees) {
+        self._coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+    }
+
+    public var coordinate: CLLocationCoordinate2D {
+        return _coordinate
+    }
 }
-
-public struct Coordinates {
-    let longitude : CLLocationDegrees // CGFloat
-    let latitude  : CLLocationDegrees
-}
-
-func toCLCoord(_ coords: Coordinates) -> CLLocationCoordinate2D {
-    CLLocationCoordinate2D(latitude: coords.latitude, longitude: coords.longitude)
-}
-
-struct MapPin: Identifiable {
-    let id = UUID()
-    let title: String
-    let coordinate: CLLocationCoordinate2D
-}
-
-//struct MapDimensions{
-//    public static var width: Int{
-//        return ConfigSettings.mapWidth
-//    }
-//    public static var height: Int{
-//        return ConfigSettings.mapHeight
-//    }
-//}
