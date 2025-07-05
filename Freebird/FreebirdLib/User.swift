@@ -1,15 +1,25 @@
 import Foundation
 /// base class for users
 public class User{
-    public var uid : String = UUID().uuidString
-    public var name: String
+    private let _uid : String = UUID().uuidString
+    private let _name: String
+    
     public init(name : String){
-        self.name = name
+        self._name = name
     }
-}//
-//  User.swift
-//  Freebird
-//
-//  Created by Anthony Guzzardo on 7/3/25.
-//
+    
+    public var id : String{
+        get {
+            return self._uid
+        }
+    }
+    public var name : String{
+        get {
+            return self._name
+        }
+    }
+
+    
+    
+}
 

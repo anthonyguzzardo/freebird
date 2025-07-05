@@ -10,7 +10,7 @@ import SwiftUI
 struct FreebirdApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            FreebirdMap()
         }
     }
 }

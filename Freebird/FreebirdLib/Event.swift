@@ -25,7 +25,7 @@ public class Event {
     }
     
     public func removeAttendee(_ user: User) {
-        _attendees.removeAll { $0.uid == user.uid }
+        _attendees.removeAll { $0.id == user.id }
     }
     
     public func addAttendee(_ user: User) {
@@ -38,11 +38,9 @@ public class Event {
     }
     
     public var title: String {
-        get {
-            return self._title
-        }
-        set {
-            self._title = newValue
-        }
+        return self._title
+    }
+    public var coordinate: Coordinate {
+        return self._coordinate
     }
 }

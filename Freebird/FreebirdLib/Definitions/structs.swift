@@ -20,6 +20,15 @@ public struct Coordinate { // Strongly Typed easier to
     }
 
     public var coordinate: CLLocationCoordinate2D {
-        return _coordinate
+        _coordinate
     }
+    
+    public var latitude: CLLocationDegrees {
+        _coordinate.latitude
+    }
+
+    public var longitude: CLLocationDegrees {
+        _coordinate.longitude
+    }
+
 }
