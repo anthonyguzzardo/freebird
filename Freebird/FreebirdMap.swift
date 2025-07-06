@@ -11,7 +11,7 @@ import SwiftData
 
 struct FreebirdMap: View {
     
-    let manager = CLLocationManager()
+    @Environment(LocationManager.self) var locationManager
     @State private var cameraPosition : MapCameraPosition = .userLocation(fallback: .automatic)
     
     var body: some View {
@@ -23,10 +23,6 @@ struct FreebirdMap: View {
             .mapControls {
                 MapUserLocationButton()
             }
-            .onAppear {
-                manager.requestWhenInUseAuthorization()
-            }
-            
             // Your action bar overlaid on top of the map
             ActionBar()
                 .padding(.bottom, 20)
@@ -39,5 +35,6 @@ struct FreebirdMap: View {
 
 #Preview {
     FreebirdMap()
+        .environment(LocationManager())
 }
 
