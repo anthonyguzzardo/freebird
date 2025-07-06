@@ -1,12 +1,12 @@
 import Foundation // needed for Date and UUID
 
-public class Event {
+public class Event : Identifiable {
     private var _uid: String = UUID().uuidString
     private var _title: String = ""
     private var _description: String = ""
     private var _date: Date = Date()
     private var _coordinate: Coordinate
-    private var _attendees: [User] = []
+    private var _attendees : [User] = []
     private var _eventCategory : EventCategory = EventCategory.NULL_VALUE
     
     // The init no longer requires description
