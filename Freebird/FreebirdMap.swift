@@ -15,61 +15,29 @@ struct FreebirdMap: View {
     @State private var cameraPosition : MapCameraPosition = .userLocation(fallback: .automatic)
     
     var body: some View {
-        Map(position: $cameraPosition){
-            UserAnnotation()// displays users location
+        ZStack(alignment: .bottom) {
+            // The full-screen map in the background
+            Map(position: $cameraPosition) {
+                UserAnnotation()
+            }
+            .mapControls {
+                MapUserLocationButton()
+            }
+            .onAppear {
+                manager.requestWhenInUseAuthorization()
+            }
+            
+            // Your action bar overlaid on top of the map
+            ActionBar()
+                .padding(.bottom, 20)
         }
-        .mapControls{
-            MapUserLocationButton() // tap to snap back to location
-        }
-        .onAppear{
-            manager.requestWhenInUseAuthorization()
-        }
+        .edgesIgnoringSafeArea(.all) // Make sure map goes edge-to-edge
     }
 }
+
+///Location Delegate Function
 
 #Preview {
     FreebirdMap()
 }
 
-//final class CurrentViewModel: NSObject, ObservableObject, CLLocationManagerDelegate{
-//    var locationManager : CLLocationManager?
-//    
-//    func checkIfLocationServicesEnabled() {
-//        if CLLocationManager.locationServicesEnabled() {
-//            locationManager = CLLocationManager()
-//            locationManager!.delegate = self // force is fine because we create line above
-//            locationManager?.desiredAccuracy = kCLLocationAccuracyBest
-//            
-//        } else {
-//            print("Location services are disabled, enable to allow application to determine your location")
-//        }
-//    }
-//    private func checkLocationAuthorizationStatus() {
-//        guard let locationManager = locationManager else { return }
-//        
-//        let status = locationManager.authorizationStatus
-//        
-//        switch (status){
-//                
-//        case .notDetermined:
-//            locationManager.requestWhenInUseAuthorization()
-//        case .denied:
-//            print("Location services in application are denied, fix in settings") // add button to settings
-//        case .restricted:
-//            print("Your location is restricted fix in settings")
-//        case .authorizedWhenInUse:
-//            locationManager.startUpdatingLocation()
-//        case .authorizedAlways:
-//            break
-//        @unknown default:
-//            break
-//        }
-//    }
-//    
-//    /// If user changes locations settings outside of application
-//    /// This is a delegate method you must set the delegate
-//    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
-//        checkLocationAuthorizationStatus()
-//    }
-//
-//}
