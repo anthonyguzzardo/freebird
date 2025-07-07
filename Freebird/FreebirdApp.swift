@@ -14,7 +14,7 @@ struct FreebirdApp: App {
     var body: some Scene {
         WindowGroup {
             RootView()
-                .environment(locationManager)
+                .environmentObject(locationManager)
         }
     }
 }

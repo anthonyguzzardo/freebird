@@ -7,17 +7,20 @@ import MapKit
 import CoreLocation
 import SwiftUI
 
-public struct MapMarker: View {
-    let event : Event
-    public init(event : Event){
-        self.event = event
+///MapMarker abstracts away iterating through the events list on the Main contentview
+///This works because we place return MapMarker as MapContent
+public struct MapMarker: MapContent {
+    let events : [Event]
+    public init(_ events : [Event]){
+        self.events = events
     }
     
-    public var body : some View {
-        Map(){
-            Marker(event.title, coordinate : CLLocationCoordinate2D(
-                latitude : event.coordinate.latitude,
-                longitude: event.coordinate.longitude))
+    ///
+    public var body : some MapContent {
+        ForEach(events){event in
+            Marker(event.title,
+                   coordinate : CLLocationCoordinate2D(latitude : event.coordinate.latitude,
+                                                       longitude: event.coordinate.longitude))
         }
     }
 }

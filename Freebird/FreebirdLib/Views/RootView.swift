@@ -7,7 +7,8 @@
 import SwiftUI
 
 struct RootView: View {
-    @Environment(LocationManager.self) private var locationManager
+    @EnvironmentObject private var locationManager: LocationManager
+
     @State private var showSplash = true
 
     var body: some View {

@@ -34,66 +34,53 @@
 import CoreLocation
 import Foundation
 
-@Observable
-public class LocationManager : NSObject, CLLocationManagerDelegate {
+public class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
 
-    // MARK: Class Members
-    /// Reports all location-related updates to its 'delegate' which is an object that
-    /// conforms to the CLLocationManagerDelegate protocol
-    @ObservationIgnored private let manager = CLLocationManager()
-    var userLocation: CLLocation?
-    var isAuthorized = false
+    private let manager = CLLocationManager()
+
+    @Published public var userLocation: CLLocation?
+    @Published public var isAuthorized: Bool = false
+
+    // MARK: Constructor
     
-    // MARK: Constructors
-    override init () {
+    public override init() {
         super.init()
         manager.delegate = self
-        startLocationServices()
+        handleAuthorizationStatus(manager.authorizationStatus)
     }
+
+    // MARK: Utility Services
     
-    func startLocationServices(){
-        if manager.authorizationStatus == .authorizedAlways || manager.authorizationStatus == .authorizedWhenInUse{
-            manager.startUpdatingLocation()
-            isAuthorized = true
-        } else {
-            isAuthorized = false
-            manager.requestWhenInUseAuthorization()
-        }
-    }
-    
-    // MARK: Utilities
-    
-    public func locationManager(_ manager : CLLocationManager, didUpdateLocations locations: [CLLocation]){
-        userLocation = locations.last
-    }
-    
-    public func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
-        switch manager.authorizationStatus{
+    private func handleAuthorizationStatus(_ status: CLAuthorizationStatus) {
+        switch status {
         case .authorizedAlways, .authorizedWhenInUse:
             isAuthorized = true
-            manager.requestLocation()
+            manager.startUpdatingLocation()
         case .notDetermined:
             isAuthorized = false
             manager.requestWhenInUseAuthorization()
-            break
         case .restricted:
             isAuthorized = false
-            print("Access restricted, need to update Location Services in settings to use app")
-            break
+            print("Location access restricted. Update settings to enable.")
         case .denied:
             isAuthorized = false
-            print("Access denied, unable to use location services")
-        default:
-            isAuthorized = true
-            startLocationServices()
+            print("Location access denied. Cannot use location services.")
+        @unknown default:
+            isAuthorized = false
+            print("Unknown authorization status.")
         }
     }
-    
-    
-    public func locationManager(_ manager: CLLocationManager, didFailWithError error: Error){
-        print(error.localizedDescription)
+
+    public func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        handleAuthorizationStatus(manager.authorizationStatus)
     }
-    
-    
-    
+
+    public func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let location = locations.last else { return }
+        userLocation = location
+    }
+
+    public func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("Location error: \(error.localizedDescription)")
+    }
 }

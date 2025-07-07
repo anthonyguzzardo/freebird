@@ -11,80 +11,74 @@ import SwiftData
 import Foundation
 
 struct FreebirdMap: View {
+    let chicagoCoordinate = Coordinate(41.9028, -87.6232)
     
-    @Environment(LocationManager.self) var locationManager
-    @State private var cameraPosition : MapCameraPosition = .userLocation(fallback: .automatic)
+    @EnvironmentObject var locationManager: LocationManager
+
+
+    @State private var cameraPosition: MapCameraPosition = .region(
+        MKCoordinateRegion(
+            center: CLLocationCoordinate2D(latitude: 41.8781, longitude: -87.6298), // Chicago fallback
+            span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
+        )
+    )
+    
     let tennis: Event
     let northAve: Event
-    let events : [Event]
+    let events: [Event]
+
+    // In Swift, all stored properties of the struct must be initialized here to satisfy the compiler
+    // before the View body can access them.
     init() {
-            let wavelandCourtsCoordinates = Coordinate(41.9220, -87.6290)
-            let northAveCoords = Coordinate(41.9189, -87.6254)
+        let wavelandCourtsCoordinates = Coordinate(41.9220, -87.6290)
+        let northAveCoords = Coordinate(41.9189, -87.6254)
 
-            tennis = Event(
-                title: "tennis",
-                date: Date(),
-                coordinate: wavelandCourtsCoordinates,
-                eventCategory: .sport
-            )
+        tennis = Event(
+            title: "tennis",
+            date: Date(),
+            coordinate: wavelandCourtsCoordinates,
+            eventCategory: .sport
+        )
 
-            northAve = Event(
-                title: "beach",
-                date: Date(),
-                coordinate: northAveCoords,
-                eventCategory: .social
-            )
+        northAve = Event(
+            title: "beach",
+            date: Date(),
+            coordinate: northAveCoords,
+            eventCategory: .social
+        )
+
         events = [tennis, northAve]
     }
-    
+
     var body: some View {
         ZStack(alignment: .bottom) {
-            // The full-screen map in the background
             Map(position: $cameraPosition) {
                 UserAnnotation()
-                ForEach(events) { event in
-                    Marker(
-                        event.title,
-                        coordinate: CLLocationCoordinate2D(
-                            latitude: event.coordinate.latitude,
-                            longitude: event.coordinate.longitude
-                        )
-                    )
-                }
-            }
-            .onAppear{
-                updateCAmeraPosition()
+                MapMarker(events)
             }
             .mapControls {
                 MapUserLocationButton()
             }
-            // Your action bar overlaid on top of the map
+            .onReceive(locationManager.$userLocation) { location in
+                guard let location = location else { return }
+                let region = MKCoordinateRegion(
+                    center: location.coordinate,
+                    span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
+                )
+                withAnimation {
+                    cameraPosition = .region(region)
+                }
+            }
+
             ActionBar()
                 .padding(.bottom, 20)
         }
-        .edgesIgnoringSafeArea(.all) // Make sure map goes edge-to-edge
-    }
-    
-    func updateCAmeraPosition(){
-        if let userLocation = locationManager.userLocation {
-            let userRegion = MKCoordinateRegion(
-                center: userLocation.coordinate,
-                span  : MKCoordinateSpan(
-                    latitudeDelta : 0.15,
-                    longitudeDelta: 0.15
-                )
-            )
-            withAnimation{
-                cameraPosition = .region(userRegion)
-            }
-        }
+        .edgesIgnoringSafeArea(.all)
     }
 }
 
-///Location Delegate Function
-
 #Preview {
     FreebirdMap()
-        .environment(LocationManager())
+        .environmentObject(LocationManager())
 }
 

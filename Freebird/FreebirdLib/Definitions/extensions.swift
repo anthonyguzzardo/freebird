@@ -1,8 +1,13 @@
-public class Extensions{
-    
-    //MARK: Enum Extensions
-    
+//MARK: Enum Extensions
+
+extension EventCategory {
     func toString() -> String {
-        return String(describing: self)
+        let rawString = String(describing: self)
+        if rawString.contains("_") {
+            let newString = rawString.replacingOccurrences(of: "_", with: " ")
+            return newString
+        } else {
+            return rawString
+        }
     }
 }
