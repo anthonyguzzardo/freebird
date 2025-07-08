@@ -41,7 +41,10 @@ public struct MMMapView: View {
                         // Use Annotation instead of Marker for more control
                         Annotation(
                             location.name,
-                            coordinate: location.coordinate
+                            coordinate: CLLocationCoordinate2D(
+                                latitude: location.coordinate.latitude,
+                                longitude: location.coordinate.longitude
+                            )
                         ) {
                             Image(systemName: "mappin.circle.fill")
                                 .resizable()

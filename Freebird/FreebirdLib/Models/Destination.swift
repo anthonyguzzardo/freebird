@@ -18,15 +18,19 @@ public class Destination {
     public var longitudeDelta : Double?
     
     @Relationship(deleteRule: .cascade)
-    public var placemarks : [MMMapMarker]
+    public var placeMarks : [MMMapMarker]
     
     // MARK: Constructor
     //SwiftData requires an init
-    init(name: String, coordinate: Coordinate? = nil, latitudeDelta: Double? = nil, longitudeDelta: Double? = nil) {
+    init(name: String, placemarks : [MMMapMarker],
+         coordinate: Coordinate? = nil, latitudeDelta: Double? = nil,
+         longitudeDelta : Double? = nil)
+    {
         self.name = name
         self.coordinate = coordinate
         self.latitudeDelta = latitudeDelta
         self.longitudeDelta = longitudeDelta
+        self.placeMarks = placemarks
     }
     
     var region : MKCoordinateRegion? {
@@ -37,5 +41,32 @@ public class Destination {
         } else {
             return nil
         }
+    }
+}
+
+extension Destination {
+    static var preview : ModelContainer {
+        let container = try! ModelContainer(
+            for: Destination.self,
+            configurations: ModelConfiguration(
+                isStoredInMemoryOnly: true
+        ))
+        // Insert on MainActor
+        MainActor.assumeIsolated {
+            for location in staticLocations {
+                let destination = Destination(
+                    name: location.name,
+                    placemarks: [MMMapMarker](),
+                    coordinate: Coordinate(
+                        location.coordinate.latitude,
+                        location.coordinate.longitude
+                    ),
+                    latitudeDelta: location.latitudeDelta,
+                    longitudeDelta: location.longitudeDelta
+                )
+                container.mainContext.insert(destination)
+            }
+        }
+        return container
     }
 }
