@@ -12,7 +12,7 @@ struct LoadApp: View {
     var body: some View {
         if isActive {
             // Replace `MainContentView()` with your actual main view
-            FreebirdMap()
+            MMMap()
         } else {
             VStack {
                 Spacer()

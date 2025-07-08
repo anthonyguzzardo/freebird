@@ -11,10 +11,13 @@ import SwiftData
 @main
 struct FreebirdApp: App {
     @State private var locationManager = LocationManager()
+    @StateObject private var eventStore = MapEventStore()
     var body: some Scene {
         WindowGroup {
             RootView()
                 .environmentObject(locationManager)
+                .environmentObject(eventStore)
         }
+        .modelContainer(for: Destination.self)
     }
 }

@@ -10,7 +10,7 @@ struct RootView: View {
     @EnvironmentObject private var locationManager: LocationManager
 
     @State private var showSplash = true
-
+    private var isAuthorized = false
     var body: some View {
         Group {
             if showSplash {
@@ -25,7 +25,7 @@ struct RootView: View {
                     }
             } else {
                 if locationManager.isAuthorized {
-                    FreebirdMap()
+                    MMMap()
                 } else {
                     Text("Need to help user")
                 }

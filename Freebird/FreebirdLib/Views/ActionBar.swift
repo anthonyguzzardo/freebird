@@ -1,20 +1,22 @@
 import SwiftUI
 
 struct ActionBar: View {
+    @EnvironmentObject var eventStore: MapEventStore
+    @Binding var isPlacingEvent: Bool
+
     var body: some View {
         HStack(spacing: 16) {
             // Add button
             Button(action: {
-                print("Add tapped")
+                isPlacingEvent = true
             }) {
-                
                 Image(systemName: "plus")
                     .font(.system(size: 20, weight: .bold))
                     .foregroundColor(.black)
                     .frame(width: 44, height: 44)
                     .background(Circle().fill(Color.white))
             }
-            
+
             // Search button
             Button(action: {
                 print("Search tapped")
@@ -25,7 +27,7 @@ struct ActionBar: View {
                     .frame(width: 44, height: 44)
                     .background(Circle().fill(Color.white))
             }
-            
+
             // Menu button
             Button(action: {
                 print("Menu tapped")
@@ -45,8 +47,4 @@ struct ActionBar: View {
         )
         .shadow(radius: 4)
     }
-}
-
-#Preview {
-    ActionBar()
 }

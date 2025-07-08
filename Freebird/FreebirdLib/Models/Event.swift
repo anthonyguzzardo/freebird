@@ -43,4 +43,5 @@ public class Event : Identifiable {
     public var coordinate: Coordinate {
         return self._coordinate
     }
+    public var id : String { _uid }
 }

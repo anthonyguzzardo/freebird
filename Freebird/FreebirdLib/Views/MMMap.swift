@@ -10,12 +10,13 @@ import SwiftUI
 import SwiftData
 import Foundation
 
-struct FreebirdMap: View {
+struct MMMap: View {
     let chicagoCoordinate = Coordinate(41.9028, -87.6232)
     
     @EnvironmentObject var locationManager: LocationManager
+    @EnvironmentObject var mapEventStore  : MapEventStore
 
-
+    @State private var isPlacingEvent: Bool = false
     @State private var cameraPosition: MapCameraPosition = .region(
         MKCoordinateRegion(
             center: CLLocationCoordinate2D(latitude: 41.8781, longitude: -87.6298), // Chicago fallback
@@ -37,14 +38,14 @@ struct FreebirdMap: View {
             title: "tennis",
             date: Date(),
             coordinate: wavelandCourtsCoordinates,
-            eventCategory: .sport
+            eventCategory: .Sport
         )
 
         northAve = Event(
             title: "beach",
             date: Date(),
             coordinate: northAveCoords,
-            eventCategory: .social
+            eventCategory: .Social
         )
 
         events = [tennis, northAve]
@@ -70,15 +71,9 @@ struct FreebirdMap: View {
                 }
             }
 
-            ActionBar()
+            ActionBar(isPlacingEvent: $isPlacingEvent)
                 .padding(.bottom, 20)
         }
         .edgesIgnoringSafeArea(.all)
     }
 }
-
-#Preview {
-    FreebirdMap()
-        .environmentObject(LocationManager())
-}
-

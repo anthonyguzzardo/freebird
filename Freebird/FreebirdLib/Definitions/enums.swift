@@ -1,24 +1,25 @@
 // MARK: - Accepted Event Categories
-public enum EventCategory: Int {
+public enum EventCategory: Int, CaseIterable {
     case NULL_VALUE = 0
-    case social
-    case party
-    case festive
-    case sport
-    case food
-    case theater
-    case music
-    case school
-    case work
-    case fitness
-    case wellness
-    case nature
-    case gaming
-    case arts_culture
-    case volunteer
-    case educational
-    case family_friendly
-    case water_activities
-    case outdoor_adventure
-    case other
+    case Social
+    case Party
+    case Festive
+    case Sport
+    case Food
+    case Theater
+    case Music
+    case School
+    case Work
+    case Fitness
+    case Wellness
+    case Nature
+    case Gaming
+    case Arts_Culture
+    case Volunteer
+    case Educational
+    case Family_Friendly
+    case Water_Activities
+    case Outdoors
+    case Other
+    
 }

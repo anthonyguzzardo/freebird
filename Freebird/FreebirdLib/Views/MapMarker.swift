@@ -18,8 +18,9 @@ public struct MapMarker: MapContent {
     ///
     public var body : some MapContent {
         ForEach(events){event in
-            Marker(event.title,
-                   coordinate : CLLocationCoordinate2D(latitude : event.coordinate.latitude,
+            Marker(
+                event.title,
+                coordinate : CLLocationCoordinate2D(latitude : event.coordinate.latitude,
                                                        longitude: event.coordinate.longitude))
         }
     }
