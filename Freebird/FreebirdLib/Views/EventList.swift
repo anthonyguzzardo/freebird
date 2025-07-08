@@ -3,18 +3,16 @@
 //  Freebird
 //
 //  Created by Anthony Guzzardo on 7/8/25.
-//
 
 import SwiftUI
 import SwiftData
 
-struct EventList : View {
-    @Query(sort: \Event.name) private var events: [Event]
-    
+struct MeetUpList : View {
+    @Query(sort: \MeetUp.name) private var meetUps: [MeetUp]
     var body : some View {
         NavigationStack{
             Group{
-                if !events.isEmpty {
+                if !meetUps.isEmpty {
                     Text("Hello, World!")
                 } else {
                     ContentUnavailableView(
@@ -26,7 +24,7 @@ struct EventList : View {
             }
 
         }
-        .navigationTitle("My Events")
+        .navigationTitle("My Meet Ups")
         .toolbar {
             Button {
                 
@@ -37,6 +35,6 @@ struct EventList : View {
     }
 }
 #Preview {
-    EventList()
-        .modelContainer(Event.preview)
+    MeetUpList()
+        .modelContainer(MeetUp.preview)
 }

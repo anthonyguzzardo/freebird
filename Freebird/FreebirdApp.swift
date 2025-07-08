@@ -17,6 +17,6 @@ struct FreebirdApp: App {
             RootView()
                 .environmentObject(locationManager)
         }
-        .modelContainer(for: Event.self)
+        .modelContainer(for: MeetUp.self)
     }
 }

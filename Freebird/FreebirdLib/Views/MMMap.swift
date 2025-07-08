@@ -18,16 +18,16 @@ public struct MMMap: View {
         span: MKCoordinateSpan(latitudeDelta: 0.15, longitudeDelta: 0.15)))
     @State private var isPlacingEvent   : Bool = false
     @State private var visibleRegion    : MKCoordinateRegion?
-    @Query private var events     : [Event]
-    @State private var event      : Event? //
+    @Query private var meetUps     : [MeetUp]
+    @State private var meetUp      : MeetUp? //
 
 
     // MARK: Body
     public var body: some View {
         ZStack {
             Map(position : $cameraPosition) {
-                if let event{
-                    ForEach(event.mapMarks){mark in
+                if let meetUp{
+                    ForEach(meetUp.mapMarks){mark in
                         Marker(coordinate: mark.coordinate.cl){
                             Label(mark.name, systemImage: "pin")
                         }
@@ -39,8 +39,8 @@ public struct MMMap: View {
                 visibleRegion = context.region
             }
             .onAppear{
-                event = events.first
-                if let region = event?.region {
+                meetUp = meetUps.first
+                if let region = meetUp?.region {
                     cameraPosition = .region(region)
                 }
             }
@@ -64,5 +64,5 @@ public struct MMMap: View {
 
 #Preview {
     MMMap()
-        .modelContainer(Event.preview)
+        .modelContainer(MeetUp.preview)
 }

@@ -10,7 +10,7 @@ import MapKit
 
 @Model
 /// Large concetet area that groups together multiple Locations 
-public class Event {
+public class MeetUp {
     
     // MARK: Class Members
     public var name : String
@@ -46,16 +46,16 @@ public class Event {
 }
 
 
-extension Event {
+extension MeetUp {
     static var preview : ModelContainer {
         let container = try! ModelContainer(
-            for: Event.self,
+            for: MeetUp.self,
             configurations: ModelConfiguration(
                 isStoredInMemoryOnly: true
             )
         )
         MainActor.assumeIsolated {
-            let event = Event(
+            let meetUp = MeetUp(
                 name: "Chicago",
                 mapMarks: [],
                 coordinate: Coordinate(41.9211,-87.6338),
@@ -63,7 +63,7 @@ extension Event {
                 longitudeDelta: 0.2
             )
             for mark in staticLocations {
-                event.mapMarks.append(
+                meetUp.mapMarks.append(
                     MapMark(
                         id: mark.id,
                         coordinate: mark.coordinate,
@@ -72,7 +72,7 @@ extension Event {
                     )
                 )
             }
-            container.mainContext.insert(event)
+            container.mainContext.insert(meetUp)
             
         }
         return container
