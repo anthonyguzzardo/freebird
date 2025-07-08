@@ -1,47 +1,80 @@
-import Foundation // needed for Date and UUID
+//
+//  Destination.swift
+//  Freebird
+//
+//  Created by Anthony Guzzardo on 7/7/25.
+//
 
-public class Event : Identifiable {
-    private var _uid: String = UUID().uuidString
-    private var _title: String = ""
-    private var _description: String = ""
-    private var _date: Date = Date()
-    private var _coordinate: Coordinate
-    private var _attendees : [User] = []
-    private var _eventCategory : EventCategory = EventCategory.NULL_VALUE
+import SwiftData
+import MapKit
+
+@Model
+/// Large concetet area that groups together multiple Locations 
+public class Event {
     
-    // The init no longer requires description
-    public init(title: String, date: Date,coordinate: Coordinate,
-                eventCategory : EventCategory = .NULL_VALUE,description: String = "")
+    // MARK: Class Members
+    public var name : String
+    public var coordinate : Coordinate?
+    public var latitudeDelta : Double?
+    public var longitudeDelta : Double?
+    
+    @Relationship(deleteRule: .cascade)
+    public var mapMarks : [MapMark]
+    
+    // MARK: Constructor
+    //SwiftData requires an init
+    init(name: String, mapMarks : [MapMark],
+         coordinate: Coordinate? = nil, latitudeDelta: Double? = nil,
+         longitudeDelta : Double? = nil)
     {
-        guard eventCategory != .NULL_VALUE else {
-            fatalError("eventCategory cannot be NULL_VALUE")
+        self.name = name
+        self.coordinate = coordinate
+        self.latitudeDelta = latitudeDelta
+        self.longitudeDelta = longitudeDelta
+        self.mapMarks = mapMarks
+    }
+    
+    var region : MKCoordinateRegion? {
+        if let coordinate, let latitudeDelta, let longitudeDelta{
+            return MKCoordinateRegion(
+                center: CLLocationCoordinate2D(latitude: coordinate.latitude, longitude: coordinate.longitude),
+                span: MKCoordinateSpan(latitudeDelta: latitudeDelta, longitudeDelta: longitudeDelta))
+        } else {
+            return nil
         }
-        
-        self._title = title
-        self._date = date
-        self._description = description // uses default if none provided
-        self._coordinate = coordinate
-        
     }
-    
-    public func removeAttendee(_ user: User) {
-        _attendees.removeAll { $0.id == user.id }
+}
+
+
+extension Event {
+    static var preview : ModelContainer {
+        let container = try! ModelContainer(
+            for: Event.self,
+            configurations: ModelConfiguration(
+                isStoredInMemoryOnly: true
+            )
+        )
+        MainActor.assumeIsolated {
+            let event = Event(
+                name: "Chicago",
+                mapMarks: [],
+                coordinate: Coordinate(41.9211,-87.6338),
+                latitudeDelta: 0.2,
+                longitudeDelta: 0.2
+            )
+            for mark in staticLocations {
+                event.mapMarks.append(
+                    MapMark(
+                        id: mark.id,
+                        coordinate: mark.coordinate,
+                        address: mark.address,
+                        name: mark.name
+                    )
+                )
+            }
+            container.mainContext.insert(event)
+            
+        }
+        return container
     }
-    
-    public func addAttendee(_ user: User) {
-        _attendees.append(user)
-    }
-    
-    // MARK: Properties
-    public var attendeeCount: Int {
-        return _attendees.count
-    }
-    
-    public var title: String {
-        return self._title
-    }
-    public var coordinate: Coordinate {
-        return self._coordinate
-    }
-    public var id : String { _uid }
 }

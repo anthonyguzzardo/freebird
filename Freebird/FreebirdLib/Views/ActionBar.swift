@@ -1,7 +1,6 @@
 import SwiftUI
 
 struct ActionBar: View {
-    @EnvironmentObject var eventStore: MapEventStore
     @Binding var isPlacingEvent: Bool
 
     var body: some View {

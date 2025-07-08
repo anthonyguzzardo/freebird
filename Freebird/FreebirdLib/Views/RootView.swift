@@ -25,7 +25,7 @@ struct RootView: View {
                     }
             } else {
                 if locationManager.isAuthorized {
-                    MMMap()
+                    StartTab()
                 } else {
                     Text("Need to help user")
                 }

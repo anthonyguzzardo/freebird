@@ -10,70 +10,59 @@ import SwiftUI
 import SwiftData
 import Foundation
 
-struct MMMap: View {
-    let chicagoCoordinate = Coordinate(41.9028, -87.6232)
+public struct MMMap: View {
     
-    @EnvironmentObject var locationManager: LocationManager
-    @EnvironmentObject var mapEventStore  : MapEventStore
+    // MARK: Struct Members
+    @State private var cameraPosition : MapCameraPosition = .region( MKCoordinateRegion(
+        center: CLLocationCoordinate2D(latitude: 41.9211, longitude: -87.6338), // Lincoln Park Zoo approx
+        span: MKCoordinateSpan(latitudeDelta: 0.15, longitudeDelta: 0.15)))
+    @State private var isPlacingEvent   : Bool = false
+    @State private var visibleRegion    : MKCoordinateRegion?
+    @Query private var events     : [Event]
+    @State private var event      : Event? //
 
-    @State private var isPlacingEvent: Bool = false
-    @State private var cameraPosition: MapCameraPosition = .region(
-        MKCoordinateRegion(
-            center: CLLocationCoordinate2D(latitude: 41.8781, longitude: -87.6298), // Chicago fallback
-            span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
-        )
-    )
-    
-    let tennis: Event
-    let northAve: Event
-    let events: [Event]
 
-    // In Swift, all stored properties of the struct must be initialized here to satisfy the compiler
-    // before the View body can access them.
-    init() {
-        let wavelandCourtsCoordinates = Coordinate(41.9220, -87.6290)
-        let northAveCoords = Coordinate(41.9189, -87.6254)
-
-        tennis = Event(
-            title: "tennis",
-            date: Date(),
-            coordinate: wavelandCourtsCoordinates,
-            eventCategory: .Sport
-        )
-
-        northAve = Event(
-            title: "beach",
-            date: Date(),
-            coordinate: northAveCoords,
-            eventCategory: .Social
-        )
-
-        events = [tennis, northAve]
-    }
-
-    var body: some View {
-        ZStack(alignment: .bottom) {
-            Map(position: $cameraPosition) {
-                UserAnnotation()
-                MapMarker(events)
+    // MARK: Body
+    public var body: some View {
+        ZStack {
+            Map(position : $cameraPosition) {
+                if let event{
+                    ForEach(event.mapMarks){mark in
+                        Marker(coordinate: mark.coordinate.cl){
+                            Label(mark.name, systemImage: "pin")
+                        }
+                        
+                    }
+                }
             }
-            .mapControls {
-                MapUserLocationButton()
+            .onMapCameraChange(frequency : .onEnd) {context in
+                visibleRegion = context.region
             }
-            .onReceive(locationManager.$userLocation) { location in
-                guard let location = location else { return }
-                let region = MKCoordinateRegion(
-                    center: location.coordinate,
-                    span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
-                )
-                withAnimation {
+            .onAppear{
+                event = events.first
+                if let region = event?.region {
                     cameraPosition = .region(region)
                 }
             }
+            .tabItem {
+                Image(systemName: "map")
+                Text("Map")
+            }
 
-            ActionBar(isPlacingEvent: $isPlacingEvent)
-                .padding(.bottom, 20)
+            
+            VStack {
+                Spacer()
+                ActionBar(isPlacingEvent: $isPlacingEvent)
+                    .padding(.bottom, 60)
+            }
         }
-        .edgesIgnoringSafeArea(.all)
+        .ignoresSafeArea(.keyboard, edges: .bottom)
+        .toolbarBackground(.visible, for: .tabBar)
+        .toolbarColorScheme(.dark, for: .tabBar)
     }
+}
+
+#Preview {
+    MMMap()
+        .modelContainer(Event.preview)
 }

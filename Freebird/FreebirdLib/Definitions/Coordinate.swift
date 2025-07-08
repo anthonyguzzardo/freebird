@@ -21,7 +21,8 @@ public struct Coordinate: Codable, Equatable {
         self.longitude = longitude
     }
 
-    public var clCoordinate: CLLocationCoordinate2D {
-        CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+    ///accesser to latitude and longitude
+    public var cl : CLLocationCoordinate2D {
+        .init(latitude: latitude, longitude: longitude)
     }
 }
