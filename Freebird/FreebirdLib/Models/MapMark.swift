@@ -8,8 +8,6 @@
 import SwiftData
 import MapKit
 
-
-
 /// Mark on a map inside a broader 'Event' i.e. Landmark or Pin
 /// Need Coordinates(latitude, longitude) , address, name, and option Destination object
 @Model
@@ -18,7 +16,7 @@ public class MapMark{
     public var coordinate   : Coordinate
     public var address      : String
     public var name         : String
-    public var event        : MeetUp?
+    public var meetup       : MeetUp?
 
     public init(id: String, coordinate: Coordinate, address: String, name: String) {
         self.id = id

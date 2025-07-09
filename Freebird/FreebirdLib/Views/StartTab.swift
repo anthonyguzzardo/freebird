@@ -13,11 +13,11 @@ struct StartTab : View {
             Group {
                 MMMap()
                     .tabItem {
-                        Label("MeetMateMap", systemImage: "map")
+                        Label("Map", systemImage: "map")
                     }
                 MeetUpList()
                     .tabItem{
-                        Label("Events", systemImage: "globe.disk")
+                        Label("Events", systemImage: "globe.desk")
                     }
             }
         }

@@ -19,19 +19,17 @@ public class MeetUp {
     public var longitudeDelta : Double?
     
     @Relationship(deleteRule: .cascade)
-    public var mapMarks : [MapMark]
+    public var mapMarks : [MapMark] = []
     
     // MARK: Constructor
     //SwiftData requires an init
-    init(name: String, mapMarks : [MapMark],
-         coordinate: Coordinate? = nil, latitudeDelta: Double? = nil,
+    init(name: String, coordinate: Coordinate? = nil, latitudeDelta: Double? = nil,
          longitudeDelta : Double? = nil)
     {
         self.name = name
         self.coordinate = coordinate
         self.latitudeDelta = latitudeDelta
         self.longitudeDelta = longitudeDelta
-        self.mapMarks = mapMarks
     }
     
     var region : MKCoordinateRegion? {
@@ -55,15 +53,14 @@ extension MeetUp {
             )
         )
         MainActor.assumeIsolated {
-            let meetUp = MeetUp(
+            let chicago = MeetUp(
                 name: "Chicago",
-                mapMarks: [],
                 coordinate: Coordinate(41.9211,-87.6338),
                 latitudeDelta: 0.2,
                 longitudeDelta: 0.2
             )
             for mark in staticLocations {
-                meetUp.mapMarks.append(
+                chicago.mapMarks.append(
                     MapMark(
                         id: mark.id,
                         coordinate: mark.coordinate,
@@ -72,7 +69,7 @@ extension MeetUp {
                     )
                 )
             }
-            container.mainContext.insert(meetUp)
+            container.mainContext.insert(chicago)
             
         }
         return container

@@ -53,7 +53,7 @@ public struct MMMap: View {
             VStack {
                 Spacer()
                 ActionBar(isPlacingEvent: $isPlacingEvent)
-                    .padding(.bottom, 60)
+                    .padding(.bottom, 40)
             }
         }
         .ignoresSafeArea(.keyboard, edges: .bottom)
