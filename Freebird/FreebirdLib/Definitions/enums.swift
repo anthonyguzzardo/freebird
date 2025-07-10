@@ -23,3 +23,13 @@ public enum MeetUpCategory: Int, CaseIterable {
     case Other
     
 }
+
+//MARK: Exception/ Error handling
+
+enum DatabaseError: Error {
+    case insertionFailed(String)
+    case deletionFailed(String)
+    case modifyFailed(String)
+    case viewFailed(String)
+    case parameterMismatch(String)
+}

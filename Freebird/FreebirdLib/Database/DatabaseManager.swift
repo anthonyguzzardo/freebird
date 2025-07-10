@@ -26,11 +26,9 @@ public class DatabaseManager {
     
     private func createTables() {
         let createTableSQL = """
-            CREATE TABLE IF NOT EXISTS teMeetUpCategory (
+            CREATE TABLE IF NOT EXISTS tdMeetUpCategories (
                 MeetUpCategoryID INTEGER PRIMARY KEY AUTOINCREMENT,
                 Name TEXT NOT NULL,
-                DttmCreatedUTC TEXT NOT NULL DEFAULT (CURRENT_TIMESTAMP),
-                DttmModifiedUTC TEXT NOT NULL DEFAULT (CURRENT_TIMESTAMP),
                 CreatedBy TEXT NOT NULL DEFAULT '',
                 ModifiedBy TEXT NOT NULL DEFAULT ''
             );
@@ -41,10 +39,10 @@ public class DatabaseManager {
                 Latitude REAL NOT NULL DEFAULT 0.0,
                 Longitude REAL NOT NULL DEFAULT 0.0,
                 Country TEXT NOT NULL DEFAULT '',
-                STATE TEXT NOT NULL DEFAULT '', -- blank if not in use
+                State TEXT NOT NULL DEFAULT '', -- blank if not in applicable
                 ZipCode INTEGER NOT NULL DEFAULT 0,
                 Address TEXT NOT NULL DEFAULT '',
-                EventCategory INTEGER NOT NULL DEFAULT 0,
+                MeetUpCategory INTEGER NOT NULL DEFAULT 0,
                 DttmStartUTC TEXT NOT NULL DEFAULT (CURRENT_TIMESTAMP),
                 DttmEndUTC TEXT NOT NULL DEFAULT (CURRENT_TIMESTAMP),
                 CreatedBy TEXT NOT NULL DEFAULT '',
@@ -57,12 +55,50 @@ public class DatabaseManager {
                 LastName TEXT NOT NULL DEFAULT '',
                 CellPhone TEXT NOT NULL DEFAULT '',
                 Email TEXT NOT NULL DEFAULT '',
-                DttmStartUTC TEXT NOT NULL DEFAULT (CURRENT_TIMESTAMP),
-                DttmEndUTC TEXT NOT NULL DEFAULT (CURRENT_TIMESTAMP),
+                DttmCreatedUTC TEXT NOT NULL DEFAULT (CURRENT_TIMESTAMP),
+                DttmModifiedUTC TEXT NOT NULL DEFAULT (CURRENT_TIMESTAMP),
                 CreatedBy TEXT NOT NULL DEFAULT '',
                 ModifiedBy TEXT NOT NULL DEFAULT ''
+                UUID TEXT NOT NULL DEFAULT ''
             );
             """
-        // Then you execute this SQL as before
+        var statement : OpaquePointer?
+        if sqlite3_prepare_v2(db, createTableSQL, -1, &statement, nil)==SQLITE_OK{
+            if sqlite3_step(statement) != SQLITE_DONE{
+                print("Table created or already exists.")
+            } else{
+                print("Could not create table")
+            }
+        } else {
+            print("Create table statement could not be prepared")
+        }
+        sqlite3_finalize(statement)
     }
+    
+    //MARK: Insert
+    public func insertMeetUpCategory(name: String) -> (Int64?, Error?) {
+        let insertSQL = """
+        INSERT INTO tdMeetUpCategory
+        (
+            Name
+        ) VALUES
+        (
+            ?
+        );
+        """
+    }
+
+    // SQLITE_OK, SQLITE_ROW, and SQLITE_DONE
+    
+    public func tryInsertMeetUp(Name: String, Latitude: Double, Longitude: Double, Country: String, State: String, ZipCode: Int, Address: String, MeetUpCategory: Int, DttmStartUTC: String, DttmEndUTC: String) -> Int64 {
+
+    }
+    
+    public func tryInsertUser(Name: String, Email: String, Password: String) -> Int64 {
+        
+    }
+    //MARK: View
+    //MARK: Delete
+    //MARK: Modify
+    
 }
