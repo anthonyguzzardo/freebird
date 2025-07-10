@@ -12,17 +12,16 @@ import MapKit
 /// Need Coordinates(latitude, longitude) , address, name, and option Destination object
 @Model
 public class MapMark{
-    public var id           : String
+    public var id           : String = UUID().uuidString
     public var coordinate   : Coordinate
     public var address      : String
     public var name         : String
     public var meetup       : MeetUp?
 
-    public init(id: String, coordinate: Coordinate, address: String, name: String) {
-        self.id = id
+    public init(name: String, coordinate: Coordinate, address: String) {
+        self.name = name
         self.coordinate = coordinate
         self.address = address
-        self.name = name
     }
     
 }

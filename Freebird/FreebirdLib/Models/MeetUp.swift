@@ -62,10 +62,9 @@ extension MeetUp {
             for mark in staticLocations {
                 chicago.mapMarks.append(
                     MapMark(
-                        id: mark.id,
+                        name: mark.name,
                         coordinate: mark.coordinate,
                         address: mark.address,
-                        name: mark.name
                     )
                 )
             }

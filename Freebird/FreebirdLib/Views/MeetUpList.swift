@@ -15,13 +15,17 @@ struct MeetUpList : View {
     //used with Add MeetUp button
     @State private var newMeetUp = false
     @State private var meetUpName = ""
-    
+    @State private var path = NavigationPath()
     // MARK: Views
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: $path) {
             Group {
                 if !meetUps.isEmpty {
                     meetUpList
+                        // THIS RIGHT BELOW
+                        .navigationDestination(for: MeetUp.self){ meetup in
+                            MeetUpMap(meetUp: meetup)
+                        }
                 } else {
                     noMeetUpsView
                 }
@@ -36,7 +40,10 @@ struct MeetUpList : View {
     // MARK: - MeetUp List
     private var meetUpList: some View {
         List(meetUps) { meetUp in
-            MeetUpRow(meetUp: meetUp)
+            NavigationLink(value: meetUp){ // THIS WILL TAKE YOU TO THE EVENT
+                MeetUpRow(meetUp: meetUp)
+            }
+            
         }
     }
 
