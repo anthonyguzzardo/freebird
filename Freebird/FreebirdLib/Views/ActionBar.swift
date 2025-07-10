@@ -7,6 +7,7 @@ struct ActionBar: View {
         HStack(spacing: 16) {
             // Add button
             Button(action: {
+                print("Add MeetUp")
                 isPlacingEvent = true
             }) {
                 Image(systemName: "plus")
@@ -46,4 +47,7 @@ struct ActionBar: View {
         )
         .shadow(radius: 4)
     }
+}
+#Preview {
+    ActionBar(isPlacingEvent: .constant(true))
 }

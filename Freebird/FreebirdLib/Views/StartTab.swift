@@ -6,15 +6,18 @@
 //
 
 import SwiftUI
-
+import SwiftData
 struct StartTab : View {
     var body : some View {
         TabView {
             Group {
-                MMMap()
-                    .tabItem {
-                        Label("Map", systemImage: "map")
-                    }
+//                let container = MeetUp.preview
+//                let fetchDescriptor = FetchDescriptor<MeetUp>()
+//                let meetUp = try! container.mainContext.fetch(fetchDescriptor)[0]
+//                MeetUpMap(meetUp: meetUp)
+//                    .tabItem {
+//                        Label("Map", systemImage: "map")
+//                    }
                 MeetUpList()
                     .tabItem{
                         Label("Events", systemImage: "globe.desk")

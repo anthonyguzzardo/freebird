@@ -4,6 +4,7 @@
 //
 //  Created by Anthony Guzzardo on 7/6/25.
 //
+import SwiftData
 import SwiftUI
 
 struct LoadApp: View {
@@ -12,7 +13,10 @@ struct LoadApp: View {
     var body: some View {
         if isActive {
             // Replace `MainContentView()` with your actual main view
-            MMMap()
+//            let container = MeetUp.preview
+//            let fetchDescriptor = FetchDescriptor<MeetUp>()
+//            let meetUp = try! container.mainContext.fetch(fetchDescriptor)[0]
+//            MeetUpMap(meetUp: meetUp)
         } else {
             VStack {
                 Spacer()
