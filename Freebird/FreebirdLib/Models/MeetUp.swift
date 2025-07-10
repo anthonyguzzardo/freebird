@@ -19,7 +19,7 @@ public class MeetUp {
     public var longitudeDelta : Double?
     
     @Relationship(deleteRule: .cascade)
-    public var mapMarks : [MapMark] = []
+    var mapMarks : [MapMark] = []
     
     // MARK: Constructor
     //SwiftData requires an init

@@ -8,15 +8,15 @@ import SwiftData
 import SwiftUI
 
 struct LoadApp: View {
-    @State private var isActive = false
+    @State private var isActive = true
     
     var body: some View {
         if isActive {
             // Replace `MainContentView()` with your actual main view
-//            let container = MeetUp.preview
-//            let fetchDescriptor = FetchDescriptor<MeetUp>()
-//            let meetUp = try! container.mainContext.fetch(fetchDescriptor)[0]
-//            MeetUpMap(meetUp: meetUp)
+            let container = MeetUp.preview
+            let fetchDescriptor = FetchDescriptor<MeetUp>()
+            let meetUp = try! container.mainContext.fetch(fetchDescriptor)[0]
+            MeetUpMap(meetUp: meetUp)
         } else {
             VStack {
                 Spacer()

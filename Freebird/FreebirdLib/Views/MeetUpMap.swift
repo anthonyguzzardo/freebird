@@ -30,8 +30,10 @@ public struct MeetUpMap: View {
     
     public var body: some View {
         ZStack {
+
             Map(position : $cameraPosition)
             {
+
                 // RIGHT HERE I WANT TO ADD THE .onTapGesture no????
 
                 //TODO: Uncomment if you wnat to see preview of events
@@ -78,12 +80,15 @@ public struct MeetUpMap: View {
                 MeetUpCardOverlay(region: region)
             }
             
-            
             VStack {
                 Spacer()
                 ActionBar(isPlacingEvent: $isPlacingEvent)
                     .padding(.bottom, 40)
             }
+            .safeAreaInset(edge: .top) {
+                DateWheel()
+            }
+
         }
         .ignoresSafeArea(.keyboard, edges: .bottom)
         .toolbarBackground(.visible, for: .tabBar)
