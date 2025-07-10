@@ -75,7 +75,7 @@ public struct MeetUpMap: View {
                 Text("Map")
             }
             if showInfoCard, let region = tappedRegion{
-                meetUpCardOverlay(region: region)
+                MeetUpCardOverlay(region: region)
             }
             
             
@@ -92,16 +92,12 @@ public struct MeetUpMap: View {
     
 }
 
-private struct meetUpCardOverlay: View {
+private struct MeetUpCardOverlay: View {
     let region: MKCoordinateRegion
 
     var body: some View {
-        VStack(spacing: 0) {
-            Image(systemName: "mappin.circle.fill")
-                .font(.system(size: 32))
-                .foregroundColor(.red)
-                .padding(.bottom, 4)
-
+        ZStack {
+            // The card itself
             VStack(spacing: 8) {
                 Text("Selected Region")
                     .font(.headline)
@@ -117,9 +113,19 @@ private struct meetUpCardOverlay: View {
                 }
                 .foregroundColor(.secondary)
 
-                Button("Add MeetUp") {
+                Button(action: {
                     // Action here
+                }) {
+                    Text("Add MeetUp")
+                        .foregroundColor(.white)
+                        .padding(.horizontal, 16)
+                        .padding(.vertical, 8)
+                        .background(
+                            RoundedRectangle(cornerRadius: 8)
+                                .fill(Color.accentColor)
+                        )
                 }
+
             }
             .padding()
             .background(
@@ -127,11 +133,27 @@ private struct meetUpCardOverlay: View {
                     .fill(Color(.systemBackground))
                     .shadow(radius: 8)
             )
-            .background(
+            .padding(.top, 32) // make space at the top for the circle
+
+            // The floating icon in front
+            ZStack {
                 Circle()
-                    .fill(Color(.systemBackground).opacity(0.3))
-            )
+                    .fill(Color.white)
+                    .frame(width: 60, height: 60)
+                    .shadow(radius: 4)
+
+                Image("MeetMateIconPng")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 60, height: 60)
+            }
+            .offset(y: -68) // pull it up to sit over the cardbs
+            Image(systemName: "mappin.circle.fill")
+                .font(.system(size: 40))
+                .foregroundColor(.black)
+                .offset(y: 90)
         }
+        
         .padding(.bottom, 60)
     }
 }
