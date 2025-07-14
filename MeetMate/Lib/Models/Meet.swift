@@ -10,7 +10,7 @@ import MapKit
 
 @Model
 /// Large concetet area that groups together multiple Locations 
-public class MeetUp {
+public class Meet {
     
     // MARK: Class Members
     public var name : String
@@ -18,6 +18,7 @@ public class MeetUp {
     public var latitudeDelta : Double?
     public var longitudeDelta : Double?
     
+    @Relationship(deleteRule: .cascade)
     @Relationship(deleteRule: .cascade)
     var mapMarks : [MapMark] = []
     

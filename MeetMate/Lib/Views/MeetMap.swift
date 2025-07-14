@@ -11,7 +11,7 @@ import SwiftData
 import Foundation
 import SQLite3
 
-public struct MeetUpMap: View {
+public struct MeetMap: View {
     // MARK: Properties
     var meetUp      : MeetUp // this is basically a paramater to the struct
     

@@ -9,7 +9,7 @@ import SwiftUI
 import SwiftData
 
 @main
-struct FreebirdApp: App {
+struct MeetMateApp: App {
     @State private var locationManager = LocationManager()
 
     var body: some Scene {

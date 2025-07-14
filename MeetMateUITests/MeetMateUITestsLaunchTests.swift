@@ -7,7 +7,7 @@
 
 import XCTest
 
-final class FreebirdUITestsLaunchTests: XCTestCase {
+final class MeetMateUITestsLaunchTests: XCTestCase {
 
     override class var runsForEachTargetApplicationUIConfiguration: Bool {
         true

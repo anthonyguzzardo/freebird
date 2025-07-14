@@ -33,25 +33,25 @@
 		65052A212E14ECCF00DD3D81 /* config.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = config.json; sourceTree = "<group>"; };
 		6550883E2E1AE49F004F48A3 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		65CD85012E146C8D0095C7F3 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
-		65FAB4502E1468F0004AFBE8 /* Freebird.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Freebird.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		65FAB45E2E1468F1004AFBE8 /* FreebirdTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FreebirdTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		65FAB4682E1468F1004AFBE8 /* FreebirdUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FreebirdUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		65FAB4502E1468F0004AFBE8 /* MeetMate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MeetMate.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		65FAB45E2E1468F1004AFBE8 /* MeetMateTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MeetMateTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		65FAB4682E1468F1004AFBE8 /* MeetMateUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MeetMateUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		65FAB4522E1468F0004AFBE8 /* Freebird */ = {
+		65FAB4522E1468F0004AFBE8 /* MeetMate */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = Freebird;
+			path = MeetMate;
 			sourceTree = "<group>";
 		};
-		65FAB4612E1468F1004AFBE8 /* FreebirdTests */ = {
+		65FAB4612E1468F1004AFBE8 /* MeetMateTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = FreebirdTests;
+			path = MeetMateTests;
 			sourceTree = "<group>";
 		};
-		65FAB46B2E1468F1004AFBE8 /* FreebirdUITests */ = {
+		65FAB46B2E1468F1004AFBE8 /* MeetMateUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = FreebirdUITests;
+			path = MeetMateUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -84,9 +84,9 @@
 		65FAB4472E1468F0004AFBE8 = {
 			isa = PBXGroup;
 			children = (
-				65FAB4522E1468F0004AFBE8 /* Freebird */,
-				65FAB4612E1468F1004AFBE8 /* FreebirdTests */,
-				65FAB46B2E1468F1004AFBE8 /* FreebirdUITests */,
+				65FAB4522E1468F0004AFBE8 /* MeetMate */,
+				65FAB4612E1468F1004AFBE8 /* MeetMateTests */,
+				65FAB46B2E1468F1004AFBE8 /* MeetMateUITests */,
 				65FAB4512E1468F0004AFBE8 /* Products */,
 				65CD85012E146C8D0095C7F3 /* .gitignore */,
 				65052A212E14ECCF00DD3D81 /* config.json */,
@@ -97,9 +97,9 @@
 		65FAB4512E1468F0004AFBE8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				65FAB4502E1468F0004AFBE8 /* Freebird.app */,
-				65FAB45E2E1468F1004AFBE8 /* FreebirdTests.xctest */,
-				65FAB4682E1468F1004AFBE8 /* FreebirdUITests.xctest */,
+				65FAB4502E1468F0004AFBE8 /* MeetMate.app */,
+				65FAB45E2E1468F1004AFBE8 /* MeetMateTests.xctest */,
+				65FAB4682E1468F1004AFBE8 /* MeetMateUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -107,9 +107,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		65FAB44F2E1468F0004AFBE8 /* Freebird */ = {
+		65FAB44F2E1468F0004AFBE8 /* MeetMate */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 65FAB4722E1468F1004AFBE8 /* Build configuration list for PBXNativeTarget "Freebird" */;
+			buildConfigurationList = 65FAB4722E1468F1004AFBE8 /* Build configuration list for PBXNativeTarget "MeetMate" */;
 			buildPhases = (
 				65FAB44C2E1468F0004AFBE8 /* Sources */,
 				65FAB44D2E1468F0004AFBE8 /* Frameworks */,
@@ -120,18 +120,18 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				65FAB4522E1468F0004AFBE8 /* Freebird */,
+				65FAB4522E1468F0004AFBE8 /* MeetMate */,
 			);
-			name = Freebird;
+			name = MeetMate;
 			packageProductDependencies = (
 			);
 			productName = Freebird;
-			productReference = 65FAB4502E1468F0004AFBE8 /* Freebird.app */;
+			productReference = 65FAB4502E1468F0004AFBE8 /* MeetMate.app */;
 			productType = "com.apple.product-type.application";
 		};
-		65FAB45D2E1468F1004AFBE8 /* FreebirdTests */ = {
+		65FAB45D2E1468F1004AFBE8 /* MeetMateTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 65FAB4752E1468F1004AFBE8 /* Build configuration list for PBXNativeTarget "FreebirdTests" */;
+			buildConfigurationList = 65FAB4752E1468F1004AFBE8 /* Build configuration list for PBXNativeTarget "MeetMateTests" */;
 			buildPhases = (
 				65FAB45A2E1468F1004AFBE8 /* Sources */,
 				65FAB45B2E1468F1004AFBE8 /* Frameworks */,
@@ -143,18 +143,18 @@
 				65FAB4602E1468F1004AFBE8 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				65FAB4612E1468F1004AFBE8 /* FreebirdTests */,
+				65FAB4612E1468F1004AFBE8 /* MeetMateTests */,
 			);
-			name = FreebirdTests;
+			name = MeetMateTests;
 			packageProductDependencies = (
 			);
 			productName = FreebirdTests;
-			productReference = 65FAB45E2E1468F1004AFBE8 /* FreebirdTests.xctest */;
+			productReference = 65FAB45E2E1468F1004AFBE8 /* MeetMateTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		65FAB4672E1468F1004AFBE8 /* FreebirdUITests */ = {
+		65FAB4672E1468F1004AFBE8 /* MeetMateUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 65FAB4782E1468F1004AFBE8 /* Build configuration list for PBXNativeTarget "FreebirdUITests" */;
+			buildConfigurationList = 65FAB4782E1468F1004AFBE8 /* Build configuration list for PBXNativeTarget "MeetMateUITests" */;
 			buildPhases = (
 				65FAB4642E1468F1004AFBE8 /* Sources */,
 				65FAB4652E1468F1004AFBE8 /* Frameworks */,
@@ -166,13 +166,13 @@
 				65FAB46A2E1468F1004AFBE8 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				65FAB46B2E1468F1004AFBE8 /* FreebirdUITests */,
+				65FAB46B2E1468F1004AFBE8 /* MeetMateUITests */,
 			);
-			name = FreebirdUITests;
+			name = MeetMateUITests;
 			packageProductDependencies = (
 			);
 			productName = FreebirdUITests;
-			productReference = 65FAB4682E1468F1004AFBE8 /* FreebirdUITests.xctest */;
+			productReference = 65FAB4682E1468F1004AFBE8 /* MeetMateUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -198,7 +198,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 65FAB44B2E1468F0004AFBE8 /* Build configuration list for PBXProject "Freebird" */;
+			buildConfigurationList = 65FAB44B2E1468F0004AFBE8 /* Build configuration list for PBXProject "MeetMate" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -212,9 +212,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				65FAB44F2E1468F0004AFBE8 /* Freebird */,
-				65FAB45D2E1468F1004AFBE8 /* FreebirdTests */,
-				65FAB4672E1468F1004AFBE8 /* FreebirdUITests */,
+				65FAB44F2E1468F0004AFBE8 /* MeetMate */,
+				65FAB45D2E1468F1004AFBE8 /* MeetMateTests */,
+				65FAB4672E1468F1004AFBE8 /* MeetMateUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -273,12 +273,12 @@
 /* Begin PBXTargetDependency section */
 		65FAB4602E1468F1004AFBE8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 65FAB44F2E1468F0004AFBE8 /* Freebird */;
+			target = 65FAB44F2E1468F0004AFBE8 /* MeetMate */;
 			targetProxy = 65FAB45F2E1468F1004AFBE8 /* PBXContainerItemProxy */;
 		};
 		65FAB46A2E1468F1004AFBE8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 65FAB44F2E1468F0004AFBE8 /* Freebird */;
+			target = 65FAB44F2E1468F0004AFBE8 /* MeetMate */;
 			targetProxy = 65FAB4692E1468F1004AFBE8 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -491,7 +491,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,7";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Freebird.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Freebird";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MeetMate.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MeetMate";
 				XROS_DEPLOYMENT_TARGET = 2.5;
 			};
 			name = Debug;
@@ -513,7 +513,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,7";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Freebird.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Freebird";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MeetMate.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MeetMate";
 				XROS_DEPLOYMENT_TARGET = 2.5;
 			};
 			name = Release;
@@ -563,7 +563,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		65FAB44B2E1468F0004AFBE8 /* Build configuration list for PBXProject "Freebird" */ = {
+		65FAB44B2E1468F0004AFBE8 /* Build configuration list for PBXProject "MeetMate" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				65FAB4702E1468F1004AFBE8 /* Debug */,
@@ -572,7 +572,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		65FAB4722E1468F1004AFBE8 /* Build configuration list for PBXNativeTarget "Freebird" */ = {
+		65FAB4722E1468F1004AFBE8 /* Build configuration list for PBXNativeTarget "MeetMate" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				65FAB4732E1468F1004AFBE8 /* Debug */,
@@ -581,7 +581,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		65FAB4752E1468F1004AFBE8 /* Build configuration list for PBXNativeTarget "FreebirdTests" */ = {
+		65FAB4752E1468F1004AFBE8 /* Build configuration list for PBXNativeTarget "MeetMateTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				65FAB4762E1468F1004AFBE8 /* Debug */,
@@ -590,7 +590,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		65FAB4782E1468F1004AFBE8 /* Build configuration list for PBXNativeTarget "FreebirdUITests" */ = {
+		65FAB4782E1468F1004AFBE8 /* Build configuration list for PBXNativeTarget "MeetMateUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				65FAB4792E1468F1004AFBE8 /* Debug */,

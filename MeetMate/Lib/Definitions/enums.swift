@@ -1,5 +1,5 @@
 // MARK: - Accepted Event Categories
-public enum MeetUpCategory: Int, CaseIterable {
+public enum MeetCategory: Int, CaseIterable {
     case NULL_VALUE = 0
     case Social
     case Party
