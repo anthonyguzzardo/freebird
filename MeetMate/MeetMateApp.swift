@@ -17,6 +17,6 @@ struct MeetMateApp: App {
             RootView()
                 .environmentObject(locationManager)
         }
-        .modelContainer(for: MeetUp.self)
+        .modelContainer(for: Meet.self)
     }
 }

@@ -13,7 +13,7 @@ import SQLite3
 
 public struct MeetMap: View {
     // MARK: Properties
-    var meetUp      : MeetUp // this is basically a paramater to the struct
+    var meet : Meet // this is basically a paramater to the struct
     
     // MARK: Struct Members
     @Environment(\.modelContext) private var modelContext
@@ -76,7 +76,7 @@ public struct MeetMap: View {
                     visibleRegion = context.region
                 }
                 .onAppear{
-                    if let region = meetUp.region {
+                    if let region = meet.region {
                         cameraPosition = .region(region)
                     }
                 }
@@ -89,7 +89,7 @@ public struct MeetMap: View {
             
             
             if showInfoCard, let region = tappedRegion{
-                MeetUpCardOverlay(region: region)
+                MeetCardOverlay(region: region)
             }
             
             VStack {
@@ -111,9 +111,9 @@ public struct MeetMap: View {
 }
 
 #Preview {
-    let container = MeetUp.preview
-    let fetchDescriptor = FetchDescriptor<MeetUp>()
-    let meetUp = try! container.mainContext.fetch(fetchDescriptor)[0]
-    return MeetUpMap(meetUp: meetUp)
+    let container = Meet.preview
+    let fetchDescriptor = FetchDescriptor<Meet>()
+    let meet = try! container.mainContext.fetch(fetchDescriptor)[0]
+    return MeetMap(meet: meet)
         .modelContainer(container)
 }

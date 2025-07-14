@@ -13,10 +13,10 @@ struct LoadApp: View {
     var body: some View {
         if isActive {
             // Replace `MainContentView()` with your actual main view
-            let container = MeetUp.preview
-            let fetchDescriptor = FetchDescriptor<MeetUp>()
-            let meetUp = try! container.mainContext.fetch(fetchDescriptor)[0]
-            MeetUpMap(meetUp: meetUp)
+            let container = Meet.preview
+            let fetchDescriptor = FetchDescriptor<Meet>()
+            let meet = try! container.mainContext.fetch(fetchDescriptor)[0]
+            MeetMap(meet: meet)
         } else {
             VStack {
                 Spacer()

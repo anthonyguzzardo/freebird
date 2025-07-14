@@ -8,7 +8,7 @@
 import SwiftUI
 import MapKit
 
-public struct MeetUpCardOverlay: View {
+public struct MeetCardOverlay: View {
     let region: MKCoordinateRegion
     @State private var scale: CGFloat = 0.1
     public var body: some View {

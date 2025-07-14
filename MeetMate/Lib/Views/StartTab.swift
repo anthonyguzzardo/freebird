@@ -18,7 +18,7 @@ struct StartTab : View {
 //                    .tabItem {
 //                        Label("Map", systemImage: "map")
 //                    }
-                MeetUpList()
+                MeetList()
                     .tabItem{
                         Label("Events", systemImage: "globe.desk")
                     }
@@ -28,5 +28,5 @@ struct StartTab : View {
 }
 #Preview {
     StartTab()
-        .modelContainer(MeetUp.preview)
+        .modelContainer(Meet.preview)
 }

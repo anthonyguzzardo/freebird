@@ -16,7 +16,7 @@ public class MapMark{
     public var coordinate   : Coordinate
     public var address      : String
     public var name         : String
-    public var meetup       : MeetUp?
+    public var meetup       : Meet?
 
     public init(name: String, coordinate: Coordinate, address: String) {
         self.name = name

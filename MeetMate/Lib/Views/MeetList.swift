@@ -7,84 +7,84 @@
 import SwiftUI
 import SwiftData
 
-struct MeetUpList : View {
+struct MeetList : View {
     
     // MARK: Struct Members
     @Environment(\.modelContext) private var modelContext
-    @Query(sort: \MeetUp.name) private var meetUps: [MeetUp]
-    //used with Add MeetUp button
-    @State private var newMeetUp = false
-    @State private var meetUpName = ""
+    @Query(sort: \Meet.name) private var meets: [Meet]
+    //used with Add Meet button
+    @State private var newMeet = false
+    @State private var meetName = ""
     @State private var path = NavigationPath()
     // MARK: Views
     var body: some View {
         NavigationStack(path: $path) {
             Group {
-                if !meetUps.isEmpty {
-                    meetUpList
+                if !meets.isEmpty {
+                    meetList
                         // THIS RIGHT BELOW
-                        .navigationDestination(for: MeetUp.self){ meetup in
-                            MeetUpMap(meetUp: meetup)
+                        .navigationDestination(for: Meet.self){ meet in
+                            MeetMap(meet: meet)
                         }
                 } else {
-                    noMeetUpsView
+                    noMeetsView
                 }
             }
-            .navigationTitle("My Meet Ups")
+            .navigationTitle("My Meets")
             .toolbar {
-                addMeetUpButton
+                addMeetButton
             }
         }
     }
 
     // MARK: - MeetUp List
-    private var meetUpList: some View {
-        List(meetUps) { meetUp in
-            NavigationLink(value: meetUp){ // THIS WILL TAKE YOU TO THE EVENT
-                MeetUpRow(meetUp: meetUp)
+    private var meetList: some View {
+        List(meets) { meet in
+            NavigationLink(value: meet){ // THIS WILL TAKE YOU TO THE EVENT
+                MeetRow(meet: meet)
             }
             
         }
     }
 
     // MARK: - Empty View
-    private var noMeetUpsView: some View {
+    private var noMeetsView: some View {
         ContentUnavailableView(
             "No events found",
             systemImage: "globe.desk",
-            description: Text("You have not set up any events yet. Tap on the plus (+) button to add your first event.")
+            description: Text("You have not set up any meets yet. Tap on the plus (+) button to add your first event.")
         )
     }
 
     // MARK: - Toolbar Button
-    private var addMeetUpButton: some ToolbarContent {
+    private var addMeetButton: some ToolbarContent {
         ToolbarItem(placement: .primaryAction) {
             Button {
-                newMeetUp.toggle()
+                newMeet.toggle()
             } label: {
                 Image(systemName: "plus.circle.fill")
             }
             .alert(
                 "Enter Meet Up Name",
-                isPresented: $newMeetUp
+                isPresented: $newMeet
             ) {
-                TextField("Enter MeetUp Name", text: $meetUpName)
+                TextField("Enter MeetUp Name", text: $meetName)
                 Button("OK") {
-                    if !meetUpName.isEmpty {
-                        let meetUp = MeetUp(name: meetUpName)
-                        modelContext.insert(meetUp)
-                        meetUpName = ""
+                    if !meetName.isEmpty {
+                        let meet = Meet(name: meetName)
+                        modelContext.insert(meet)
+                        meetName = ""
                     }
                 }
                 Button("Cancel", role: .cancel) { }
             } message: {
-                Text("Create a new MeetUp")
+                Text("Create a new Meet")
             }
         }
     }
 
-    private struct MeetUpRow: View {
-        let meetUp: MeetUp
+    private struct MeetRow: View {
+        let meet: Meet
         @Environment(\.modelContext) private var modelContext
 
         var body: some View {
@@ -94,7 +94,7 @@ struct MeetUpList : View {
                     .foregroundStyle(.primary)
 
                 VStack(alignment: .leading) {
-                    Text(meetUp.name)
+                    Text(meet.name)
                     locationText
                         .font(.caption)
                         .foregroundStyle(.secondary)
@@ -102,7 +102,7 @@ struct MeetUpList : View {
             }
             .swipeActions(edge: .trailing) {
                 Button(role: .destructive) {
-                    modelContext.delete(meetUp)
+                    modelContext.delete(meet)
                 } label: {
                     Label("Delete", systemImage: "trash")
                 }
@@ -110,7 +110,7 @@ struct MeetUpList : View {
         }
 
         private var locationText: Text {
-            Text("^[\(meetUp.mapMarks.count) location](inflect: true)")
+            Text("^[\(meet.mapMarks.count) location](inflect: true)")
         }
     }
 
@@ -118,6 +118,6 @@ struct MeetUpList : View {
 
 }
 #Preview {
-    MeetUpList()
-        .modelContainer(MeetUp.preview)
+    MeetList()
+        .modelContainer(Meet.preview)
 }

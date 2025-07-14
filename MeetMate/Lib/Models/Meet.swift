@@ -45,16 +45,16 @@ public class Meet {
 }
 
 
-extension MeetUp {
+extension Meet {
     static var preview : ModelContainer {
         let container = try! ModelContainer(
-            for: MeetUp.self,
+            for: Meet.self,
             configurations: ModelConfiguration(
                 isStoredInMemoryOnly: true
             )
         )
         MainActor.assumeIsolated {
-            let chicago = MeetUp(
+            let chicago = Meet(
                 name: "Chicago",
                 coordinate: Coordinate(41.9211,-87.6338),
                 latitudeDelta: 0.2,
